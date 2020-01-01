@@ -1,20 +1,41 @@
-import App from 'next/app'
-import React from 'react'
-import { CustomBlock } from '~/components/CustomBlock'
+import { Container, ThemeProvider } from '@material-ui/core'
+import { AppProps } from 'next/app'
+import React, { useEffect } from 'react'
+import { SearchInput } from '~/components/SearchInput'
+import { theme } from '~/theme'
 
-class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props
+function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side')
 
-    return (
-      <>
-        <CustomBlock />
+    if (jssStyles) {
+      jssStyles.parentNode!.removeChild(jssStyles)
+    }
+  }, [])
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Container maxWidth='xs'>
+        <SearchInput />
         <main>
           <Component {...pageProps} />
         </main>
-      </>
-    )
-  }
+      </Container>
+    </ThemeProvider>
+  )
 }
+
+// Only uncomment this method if you have blocking data requirements for
+// every single page in your application. This disables the ability to
+// perform automatic static optimization, causing every page in your app to
+// be server-side rendered.
+//
+// MyApp.getInitialProps = async (appContext) => {
+//   // calls page's `getInitialProps` and fills `appProps.pageProps`
+//   const appProps = await App.getInitialProps(appContext);
+//
+//   return { ...appProps }
+// }
 
 export default MyApp
