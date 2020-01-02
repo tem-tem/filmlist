@@ -7,7 +7,7 @@ interface Props {
 
 export const List = ({ items }: Props) => {
   const itemsToRender = items.map((item: ListEntry, i: number) => (
-    <div key={`${i}-${item.name}`}>{item.name}</div>
+    <div key={`${i}-${item.name}`}>{item.name || item.title}</div>
   ))
 
   if (items.length === 0) {

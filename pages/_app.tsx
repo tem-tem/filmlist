@@ -1,6 +1,8 @@
 import { Container, ThemeProvider } from '@material-ui/core'
 import { AppProps } from 'next/app'
 import React, { useEffect } from 'react'
+import { RequestProvider } from 'react-request-hook'
+import axiosInstance from '~/helpers/axiosInstance'
 import { theme } from '~/theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -14,13 +16,15 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <ThemeProvider theme={theme}>
-      <main>
-        <Container maxWidth='xs'>
-          <Component {...pageProps} />
-        </Container>
-      </main>
-    </ThemeProvider>
+    <RequestProvider value={axiosInstance}>
+      <ThemeProvider theme={theme}>
+        <main>
+          <Container maxWidth='xs'>
+            <Component {...pageProps} />
+          </Container>
+        </main>
+      </ThemeProvider>
+    </RequestProvider>
   )
 }
 
