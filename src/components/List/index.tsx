@@ -1,18 +1,15 @@
 import { ListEntry } from '@types'
 import React from 'react'
+import { ListItem } from '../ListItem'
 
 interface Props {
   items: ListEntry[]
 }
 
 export const List = ({ items }: Props) => {
-  const itemsToRender = items.map((item: ListEntry, i: number) => (
-    <div key={`${i}-${item.name}`}>{item.name || item.title}</div>
+  const itemsToRender = items.map((item: ListEntry) => (
+    <ListItem key={item.id} item={item} />
   ))
-
-  if (items.length === 0) {
-    return <div>Items will appear here</div>
-  }
 
   return <div>{itemsToRender}</div>
 }

@@ -18,6 +18,7 @@ export const SearchInput = ({ add }: Props) => {
 
   useEffect(() => {
     if (searchResults.data && Array.isArray(searchResults.data.results)) {
+      // TODO: filter results
       setSuggestions(searchResults.data.results)
     }
   }, [searchResults])
@@ -53,7 +54,11 @@ export const SearchInput = ({ add }: Props) => {
   }, [])
 
   return (
-    <form onSubmit={handleSubmit} autoComplete='off'>
+    <form
+      onSubmit={handleSubmit}
+      autoComplete='off'
+      style={{ paddingBottom: 20 }}
+    >
       <TextField
         autoFocus
         label='Enter Movie/TV Title'

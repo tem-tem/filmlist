@@ -7,6 +7,7 @@ export const ListController = () => {
   const [list, setList] = useState<ListEntry[]>([])
 
   const addItem = useCallback((item: ListEntry) => {
+    // TODO: make request to specific item to get more details
     setList(rest => [item, ...rest])
   }, [])
 
