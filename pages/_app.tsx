@@ -1,7 +1,6 @@
 import { Container, ThemeProvider } from '@material-ui/core'
 import { AppProps } from 'next/app'
 import React, { useEffect } from 'react'
-import { SearchInput } from '~/components/SearchInput'
 import { theme } from '~/theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -16,12 +15,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth='xs'>
-        <SearchInput />
-        <main>
+      <main>
+        <Container maxWidth='xs'>
           <Component {...pageProps} />
-        </main>
-      </Container>
+        </Container>
+      </main>
     </ThemeProvider>
   )
 }

@@ -1,7 +1,8 @@
 import React from 'react'
+import { ListController } from '~/controllers/ListController'
 
 function HomePage() {
-  return <div>Home Page</div>
+  return <ListController />
 }
 
 export default HomePage
